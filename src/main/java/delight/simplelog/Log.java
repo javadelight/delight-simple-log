@@ -15,6 +15,22 @@ public class Log {
         System.out.println(message);
     }
 
+    public static void println(final String message) {
+        print(message);
+    }
+
+    public static void print(final Throwable exception) {
+        println(exception.toString());
+        for (final StackTraceElement element : exception.getStackTrace()) {
+            println(element.toString());
+        }
+
+    }
+
+    public static void println(final Object context, final String message) {
+        print(context.toString() + ": " + message);
+    }
+
     public static void setStdOut(final Closure<String> listener) {
         stdout = listener;
     }
