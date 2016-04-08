@@ -9,6 +9,9 @@ public class Log {
     public static Level LEVEL = Level.WARN;
 
     public static void trace(final String message, final Throwable exception) {
+        if (LEVEL.getLevel() >= LEVEL.TRACE.getLevel()) {
+
+        }
 
     }
 
