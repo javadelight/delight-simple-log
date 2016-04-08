@@ -9,14 +9,18 @@ public class Log {
     public static Level LEVEL = Level.WARN;
 
     public static void trace(final String message, final Throwable exception) {
-        if (LEVEL.getLevel() >= LEVEL.TRACE.getLevel()) {
-
+        if (LEVEL.getLevel() >= Level.TRACE.getLevel()) {
+            print(message);
+            print(exception);
         }
 
     }
 
     public static void warn(final String message, final Throwable exception) {
-
+        if (LEVEL.getLevel() >= Level.WARN.getLevel()) {
+            print(message);
+            print(exception);
+        }
     }
 
     public static void print(final String message) {
