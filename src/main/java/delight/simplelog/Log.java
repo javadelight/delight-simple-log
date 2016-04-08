@@ -6,6 +6,8 @@ public class Log {
 
     private static Closure<String> stdout;
 
+    public static Level LEVEL = Level.WARN;
+
     public static void trace(final String message, final Throwable exception) {
 
     }
