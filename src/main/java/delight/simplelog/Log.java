@@ -6,6 +6,14 @@ public class Log {
 
     private static Closure<String> stdout;
 
+    public static void trace(final String message, final Throwable exception) {
+
+    }
+
+    public static void warn(final String message, final Throwable exception) {
+
+    }
+
     public static void print(final String message) {
         if (stdout != null) {
             stdout.apply(message);
