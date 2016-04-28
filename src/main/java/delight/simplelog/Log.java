@@ -39,7 +39,7 @@ public class Log {
     public static void print(final Throwable exception) {
         println(exception.toString());
         for (final StackTraceElement element : exception.getStackTrace()) {
-            println(element.toString());
+            println("  " + element.toString());
         }
 
     }
