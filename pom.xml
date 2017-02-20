@@ -5,7 +5,6 @@
 	<version>0.0.2</version>
 	<description>A most lightweight log for Java.</description>
 	<url>https://github.com/javadelight/delight-simple-log</url>
-
 	<properties>
 		<module.gwtVersion>2.5.1</module.gwtVersion>
 		<module.importedPackages>
