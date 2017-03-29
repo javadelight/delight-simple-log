@@ -16,6 +16,12 @@ public class Log {
 
     }
 
+    public static void warn(final String message) {
+        if (LEVEL.getLevel() >= Level.WARN.getLevel()) {
+            print(message);
+        }
+    }
+
     public static void warn(final String message, final Throwable exception) {
         if (LEVEL.getLevel() >= Level.WARN.getLevel()) {
             print(message);
