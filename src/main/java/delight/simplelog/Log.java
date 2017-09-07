@@ -1,6 +1,7 @@
 package delight.simplelog;
 
 import delight.functional.Closure;
+import delight.strings.ClassNameUtils;
 
 public class Log {
 
@@ -51,7 +52,8 @@ public class Log {
     }
 
     public static void println(final Object context, final String message) {
-        print(context.toString() + ": " + message);
+        
+    	print(ClassNameUtils.getClassNameWithoutPackage(context.getClass())+"/"+Integer.toHexString(context.hashCode() / 1000) + ": " + message);
     }
 
     public static void setStdOut(final Closure<String> listener) {
