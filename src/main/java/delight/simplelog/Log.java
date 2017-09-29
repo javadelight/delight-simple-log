@@ -53,7 +53,14 @@ public class Log {
 
     public static void println(final Object context, final String message) {
         
-    	print(ClassNameUtils.getClassNameWithoutPackage(context.getClass())+"/"+Integer.toHexString(context.hashCode() / 1000) + ": " + message);
+    	final Class<?> clazz;
+    	if (context instanceof Class) {
+    		clazz = (Class<?>) context;
+    	} else {
+    		clazz = context.getClass();
+    	}
+    	
+    	print(ClassNameUtils.getClassNameWithoutPackage(clazz)+"/"+Integer.toHexString(context.hashCode() / 1000) + ": " + message);
     }
 
     public static void setStdOut(final Closure<String> listener) {
