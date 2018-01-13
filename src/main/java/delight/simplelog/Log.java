@@ -51,8 +51,7 @@ public class Log {
 
     }
 
-    public static void println(final Object context, final String message) {
-        
+    public static String getSimpleObjectName(Object context) {
     	final Class<?> clazz;
     	if (context instanceof Class) {
     		clazz = (Class<?>) context;
@@ -60,7 +59,15 @@ public class Log {
     		clazz = context.getClass();
     	}
     	
-    	print(ClassNameUtils.getClassNameWithoutPackage(clazz)+"/"+Integer.toHexString(context.hashCode() / 1000) + ": " + message);
+    	return ClassNameUtils.getClassNameWithoutPackage(clazz)+"/"+Integer.toHexString(context.hashCode() / 1000);
+    	
+    }
+    
+    public static void println(final Object context, final String message) {
+        
+    	
+    	
+    	print(getSimpleObjectName(context) + ": " + message);
     }
 
     public static void setStdOut(final Closure<String> listener) {
