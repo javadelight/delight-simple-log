@@ -26,11 +26,31 @@ public class Log {
 	public static void error(Object context, final String message, Throwable exception) {
 		listener.onMessage(Level.ERROR, context, message, exception);
 	}
+	
+	public static void info(final String message) {
+		listener.onMessage(Level.INFO, message);
+	}
+
+	public static void info(final String message, Throwable exception) {
+		listener.onMessage(Level.INFO, message, exception);
+	}
+
+	public static void info(final Object context, final String message) {
+		listener.onMessage(Level.INFO, context, message);
+	}
+
+	public static void info(Object context, final String message, Throwable exception) {
+		listener.onMessage(Level.INFO, context, message, exception);
+	}
 
 	public static void trace(final String message, final Throwable exception) {
 		listener.onMessage(Level.TRACE, message, exception);
 	}
 
+	public static void trace(final Object context, final String message) {
+		listener.onMessage(Level.TRACE, message);
+	}
+	
 	public static void warn(final String message) {
 		listener.onMessage(Level.WARN, message);
 	}
