@@ -1,77 +1,88 @@
 package delight.simplelog;
 
 import delight.functional.Closure;
+import delight.simplelog.internal.DefaultListener;
+import delight.simplelog.internal.StdOutListener;
 import delight.strings.ClassNameUtils;
 
 public class Log {
 
-    private static Closure<String> stdout;
+	private static LogListener listener = new DefaultListener();
 
-    public static Level LEVEL = Level.WARN;
+	public static Level LEVEL = Level.WARN;
 
-    public static void trace(final String message, final Throwable exception) {
-        if (LEVEL.getLevel() >= Level.TRACE.getLevel()) {
-            print(message);
-            print(exception);
-        }
+	public static void error(final String message) {
+		listener.onMessage(Level.ERROR, message);
+	}
 
-    }
+	public static void error(final String message, Throwable exception) {
+		listener.onMessage(Level.ERROR, message, exception);
+	}
 
-    public static void warn(final String message) {
-        if (LEVEL.getLevel() >= Level.WARN.getLevel()) {
-            print(message);
-        }
-    }
+	public static void error(final Object context, final String message) {
+		listener.onMessage(Level.ERROR, context, message);
+	}
 
-    public static void warn(final String message, final Throwable exception) {
-        if (LEVEL.getLevel() >= Level.WARN.getLevel()) {
-            print(message);
-            print(exception);
-        }
-    }
+	public static void error(Object context, final String message, Throwable exception) {
+		listener.onMessage(Level.ERROR, context, message, exception);
+	}
 
-    public static void print(final String message) {
-        if (stdout != null) {
-            stdout.apply(message);
-            return;
-        }
+	public static void trace(final String message, final Throwable exception) {
+		listener.onMessage(Level.TRACE, message, exception);
+	}
 
-        System.out.println(message);
-    }
+	public static void warn(final String message) {
+		listener.onMessage(Level.WARN, message);
+	}
 
-    public static void println(final String message) {
-        print(message);
-    }
+	public static void warn(final Object context, final String message) {
+		listener.onMessage(Level.WARN, context, message);
+	}
 
-    public static void print(final Throwable exception) {
-        println(exception.toString());
-        for (final StackTraceElement element : exception.getStackTrace()) {
-            println("  " + element.toString());
-        }
+	public static void warn(final String message, final Throwable exception) {
+		listener.onMessage(Level.WARN, message, exception);
+	}
 
-    }
+	public static void warn(Object context, final String message, final Throwable exception) {
+		listener.onMessage(Level.WARN, context, message, exception);
+	}
 
-    public static String getSimpleObjectName(Object context) {
-    	final Class<?> clazz;
-    	if (context instanceof Class) {
-    		clazz = (Class<?>) context;
-    	} else {
-    		clazz = context.getClass();
-    	}
-    	
-    	return ClassNameUtils.getClassNameWithoutPackage(clazz)+"/"+Integer.toHexString(context.hashCode() / 1000);
-    	
-    }
-    
-    public static void println(final Object context, final String message) {
-        
-    	
-    	
-    	print(getSimpleObjectName(context) + ": " + message);
-    }
+	public static void print(final String message) {
+		listener.onMessage(Level.INFO, message);
+	}
 
-    public static void setStdOut(final Closure<String> listener) {
-        stdout = listener;
-    }
+	public static void println(final String message) {
+		listener.onMessage(Level.INFO, message);
+
+	}
+
+	public static void print(final Throwable exception) {
+		listener.onMessage(Level.INFO, exception.getMessage(), exception);
+	}
+
+	public static String getSimpleObjectName(Object context) {
+		final Class<?> clazz;
+		if (context instanceof Class) {
+			clazz = (Class<?>) context;
+		} else {
+			clazz = context.getClass();
+		}
+
+		return ClassNameUtils.getClassNameWithoutPackage(clazz) + "/" + Integer.toHexString(context.hashCode() / 1000);
+
+	}
+
+	public static void println(final Object context, final String message) {
+		listener.onMessage(Level.INFO, context, message);
+
+	}
+
+	public static void setStdOut(final Closure<String> stdout) {
+		listener = new StdOutListener(stdout);
+	}
+	
+	public static void setListener(LogListener logListener) {
+		listener = logListener;
+	}
 
 }
