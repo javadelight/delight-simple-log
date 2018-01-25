@@ -1,6 +1,7 @@
 package delight.simplelog.internal;
 
 import delight.functional.Closure;
+import delight.simplelog.FieldDefinition;
 import delight.simplelog.Level;
 import delight.simplelog.Log;
 import delight.simplelog.LogListener;
@@ -52,6 +53,38 @@ public  class StdOutListener implements LogListener {
 	public StdOutListener(Closure<String> stdout) {
 		super();
 		this.stdout = stdout;
+	}
+
+	private final void printFields(FieldDefinition[] fields) {
+		for (FieldDefinition field:fields) {
+			println("  "+field.key()+"="+field.value());
+		}
+	}
+	
+	@Override
+	public void onMessage(Level level, Object context, String message, FieldDefinition[] fields) {
+		onMessage(level, context, message);
+		printFields(fields);
+	}
+
+	@Override
+	public void onMessage(Level level, Object context, String text, Throwable exception, FieldDefinition[] fields) {
+		onMessage(level, context, text, exception);
+		printFields(fields);
+		
+	}
+
+	@Override
+	public void onMessage(Level level, String text, FieldDefinition[] fields) {
+		onMessage(level, text);
+		printFields(fields);
+		
+	}
+
+	@Override
+	public void onMessage(Level level, String text, Throwable exception, FieldDefinition[] fields) {
+		onMessage(level, text, exception);
+		printFields(fields);
 	}
 
 }
