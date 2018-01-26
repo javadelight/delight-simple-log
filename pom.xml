@@ -37,13 +37,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- only for gwt maven plugin!!! -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${module.gwtVersion}</version>
-			<scope>provided</scope>
-		</dependency>
+		
 
 
 	</dependencies>
@@ -68,7 +62,6 @@
 
 			<!-- FOR BUNDLE MANAGEMENT -->
 			<!-- The Maven bundle plugin generates Meta-data required for OSGi -->
-
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -86,33 +79,6 @@
 						</Bundle-RequiredExecutionEnvironment>
 					</instructions>
 				</configuration>
-			</plugin>
-
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<version>${module.gwtVersion}</version>
-				<configuration>
-
-					<logLevel>INFO</logLevel>
-					<!-- -->
-					<validateOnly>true</validateOnly>
-					<gwtVersion>${module.gwtVersion}</gwtVersion>
-
-
-					<webappDirectory>${basedir}/src/main/webapp</webappDirectory>
-
-				</configuration>
-				<executions>
-					<execution>
-						<id>gwtcompile</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 
@@ -288,13 +254,7 @@
 
 
 
-	<repositories>
-		<repository>
-			<id>Appjangle Releases</id>
-			<url>http://maven.appjangle.com/appjangle/releases</url>
-		</repository>
-	</repositories>
-
+	
 	<developers>
 		<developer>
 			<id>mxro</id>
