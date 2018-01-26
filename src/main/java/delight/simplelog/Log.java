@@ -162,16 +162,16 @@ public class Log {
 	
 	
 	public static void print(final String message) {
-		listener.onMessage(Level.INFO, message);
+		listener.onMessage(Level.TRACE, message);
 	}
 
 	public static void println(final String message) {
-		listener.onMessage(Level.INFO, message);
+		listener.onMessage(Level.TRACE, message);
 
 	}
 
 	public static void print(final Throwable exception) {
-		listener.onMessage(Level.INFO, exception.getMessage(), exception);
+		listener.onMessage(Level.TRACE, exception.getMessage(), exception);
 	}
 
 	public static String getSimpleObjectName(Object context) {
@@ -187,7 +187,7 @@ public class Log {
 	}
 
 	public static void println(final Object context, final String message) {
-		listener.onMessage(Level.INFO, context, message);
+		listener.onMessage(Level.TRACE, context, message);
 
 	}
 
