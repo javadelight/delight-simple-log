@@ -9,7 +9,7 @@ public class Log {
 
 	private static LogListener listener = new DefaultListener();
 
-	public static Level LEVEL = Level.INFO;
+	public static Level LEVEL = Level.TRACE;
 
 	/*
 	 * TRACE
