@@ -270,6 +270,14 @@
 		</developer>
 	</developers>
 	
+	<distributionManagement>
+		<repository>
+			<id>bintray-javadelight-javadelight</id>
+			<name>javadelight-javadelight</name>
+			<url>https://api.bintray.com/maven/javadelight/javadelight/delight-simple-log/;publish=1</url>
+		</repository>
+	</distributionManagement>
+	
 	<scm>
 		<connection>scm:git:git@github.com:javadelight/delight-simple-log.git</connection>
 		<url>https://github.com/javadelight/delight-simple-log</url>
