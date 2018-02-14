@@ -32,3 +32,18 @@ Redirect log (full context):
 ```
 Log.setListener(new LogListener() { ... });
 ```
+
+## Maven Dependency
+
+```xml
+<dependency>
+    <groupId>org.javadelight</groupId>
+    <artifactId>delight-simple-log</artifactId>
+    <version>[insert latest version]</version>
+</dependency>
+```
+
+This artifact is available on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cdelight-simple-log) and 
+[BinTray](https://bintray.com/javadelight/javadelight/delight-simple-log).
+
+[![Maven Central](https://img.shields.io/maven-central/v/org.javadelight/delight-simple-log.svg)](https://search.maven.org/#search%7Cga%7C1%7Cdelight-simple-log)
